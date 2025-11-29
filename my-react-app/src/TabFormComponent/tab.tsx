@@ -5,6 +5,11 @@ import Settings from "./Settings/Settings";
 import "./tab.css";
 
 const Tab = () => {
+  const [active, setActive] = useState<any>("Profile");
+  const [error, setError] = useState({ errorMsg: " Invalid field" });
+  const btns = ["Profile", "Interests", "Settings"];
+  const [showError, setShowError] = useState(false);
+
   const [data, setData] = useState<any>({
     name: "Lakshay",
     age: 26,
@@ -12,9 +17,6 @@ const Tab = () => {
     interests: ["music", "coding"],
     theme: "dark",
   });
-  const [active, setActive] = useState<any>("Profile");
-  const [error, setError] = useState("");
-  const btns = ["Profile", "Interests", "Settings"];
 
   const renderContent = () => {
     switch (active) {
@@ -24,7 +26,8 @@ const Tab = () => {
             data={data}
             setData={setData}
             error={error}
-            setError={setError}
+            showError={showError}
+            setShowError={setShowError}
           />
         );
       case "Interests":
@@ -60,10 +63,19 @@ const Tab = () => {
   const onSubmit = () => {
     console.log(data);
   };
-
+  function Validate(data: any) {
+    if (data.name.length < 2) {
+      setShowError(true);
+      return false;
+    } else {
+      return true;
+    }
+  }
   const onNext = (btns: any) => {
-    const currentIndex = btns.indexOf(active);
-    setActive(btns[currentIndex + 1]);
+    if (Validate(data)) {
+      const currentIndex = btns.indexOf(active);
+      setActive(btns[currentIndex + 1]);
+    }
   };
 
   const onPrev = (btns: any) => {
