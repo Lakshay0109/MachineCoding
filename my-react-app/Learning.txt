@@ -1,0 +1,15 @@
+Correct rule
+✔ Default export → import without { } Just With Name
+✔ Named export → import WITH { }
+
+
+** Everytime create a project from scratch and start learning in VScode.
+
+We write js in script tag in last inside the body tag as Dom manipulation can only be done once the dom is loaded.
+
+Syntax:
+Difference is of Hoisting in arrow function and normal function
+function foo() {}
+const foo = () => {}
+Functional components in React mostly use arrow functions.
+Keeps code clean and avoids hoisting confusion
