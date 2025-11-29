@@ -13,3 +13,12 @@ function foo() {}
 const foo = () => {}
 Functional components in React mostly use arrow functions.
 Keeps code clean and avoids hoisting confusion
+
+
+**e.target._kuchBhi_ (isme sirf e.target poora html element return krta h) 
+ye hamesha attributes ki value dega jo pass kr rakhe hote h 
+
+
+filter ka pure rule ye hai:
+Jo element callback function me true return kare → woh new array me rahega
+Jo element false return kare → woh new array me nahi rahega

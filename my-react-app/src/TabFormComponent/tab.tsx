@@ -19,11 +19,32 @@ const Tab = () => {
   const renderContent = () => {
     switch (active) {
       case "Profile":
-        return <Profile data={data} setData={setData} setError={setError} />;
+        return (
+          <Profile
+            data={data}
+            setData={setData}
+            error={error}
+            setError={setError}
+          />
+        );
       case "Interests":
-        return <Interests />;
+        return (
+          <Interests
+            data={data}
+            setData={setData}
+            error={error}
+            setError={setError}
+          />
+        );
       case "Settings":
-        return <Settings />;
+        return (
+          <Settings
+            data={data}
+            setData={setData}
+            error={error}
+            setError={setError}
+          />
+        );
     }
   };
 
@@ -36,7 +57,19 @@ const Tab = () => {
       setActive("Settings");
     }
   }
-  const onSubmit = () => {};
+  const onSubmit = () => {
+    console.log(data);
+  };
+
+  const onNext = (btns: any) => {
+    const currentIndex = btns.indexOf(active);
+    setActive(btns[currentIndex + 1]);
+  };
+
+  const onPrev = (btns: any) => {
+    const currentIndex = btns.indexOf(active);
+    setActive(btns[currentIndex - 1]);
+  };
 
   return (
     <>
@@ -57,13 +90,31 @@ const Tab = () => {
             ))}
           </div>
           <div>{renderContent()}</div>
+        </div>
+        {btns.indexOf(active) > 0 && (
+          <button
+            className="m-2 p-2 border-black bg-secondary bg-danger text-white rounded"
+            onClick={() => onPrev(btns)}
+          >
+            Back
+          </button>
+        )}
+        {btns.indexOf(active) < btns.length - 1 && (
+          <button
+            className="m-2 p-2 border-black bg-secondary bg-danger text-white rounded"
+            onClick={() => onNext(btns)}
+          >
+            Next
+          </button>
+        )}
+        {btns.indexOf(active) === btns.length - 1 && (
           <button
             className="m-2 p-2 border-black bg-secondary bg-danger text-white rounded"
             onClick={onSubmit}
           >
-            Next
+            Submit
           </button>
-        </div>
+        )}
       </center>
     </>
   );

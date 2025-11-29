@@ -1,4 +1,4 @@
-const Profile = ({ data, setData }: any) => {
+const Profile = ({ data, setData, error, setError }: any) => {
   const { name, age, email } = data;
 
   const onInputChange = (e: any, item: any) => {
@@ -20,6 +20,7 @@ const Profile = ({ data, setData }: any) => {
           value={name}
           onChange={(e) => onInputChange(e, "name")}
         />
+        {error && <div>Error:{error}</div>}
       </div>
       <div>
         <label className="p-2" htmlFor="age">
@@ -31,6 +32,7 @@ const Profile = ({ data, setData }: any) => {
           id="age"
           onChange={(e) => onInputChange(e, "age")}
         />
+        {error && <div>Error:{error}</div>}
       </div>
       <div>
         <label className="p-2" htmlFor="email">
@@ -42,6 +44,7 @@ const Profile = ({ data, setData }: any) => {
           id="email"
           onChange={(e) => onInputChange(e, "email")}
         />
+        {error && <div>Error:{error}</div>}
       </div>
     </div>
   );
